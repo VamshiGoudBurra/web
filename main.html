@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V.V-Mart - Online Shopping</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #34495e;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .category-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+
+        .product-card p {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #219653;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>V.V-Mart - Your One-Stop Shop</h1>
+    </div>
+
+    <div class="categories">
+        <button class="category-btn" onclick="filterCategory('all')">All</button>
+        <button class="category-btn" onclick="filterCategory('grocery')">Grocery</button>
+        <button class="category-btn" onclick="filterCategory('coolDrinks')">Cool Drinks</button>
+        <button class="category-btn" onclick="filterCategory('clothes')">Clothes</button>
+        <button class="category-btn" onclick="filterCategory('accessories')">Accessories</button>
+    </div>
+
+    <div class="products" id="productContainer">
+        <!-- Grocery Items -->
+        <div class="product-card" data-category="grocery">
+            <img src="https://www.thespruceeats.com/thmb/DTm3lcGFvmyvTeD1JQUxzd5PF18=/4368x2912/filters:no_upscale():max_bytes(150000):strip_icc()/basmati-rice-with-coriander-in-a-balti-dish-1131959562-a5b0353d5abb4655919ff18af6f1e65d.jpg" alt="Rice">
+            <h3>Basmati Rice</h3>
+            <p>Rs/-199/per Kg</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <img src="https://thumbs.dreamstime.com/b/wheat-flour-sack-ears-grains-table-golden-ripe-cereal-field-sunset-as-background-193017320.jpg" alt="Wheat Flour">
+            <h3>Wheat Flour</h3>
+            <p>Rs/-99/per Kg</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.eN76VUS6jeA8bEXCfmvCOAHaE8&pid=Api&P=0&h=180" alt="Sugar">
+            <h3>Sugar</h3>
+            <p>Rs/-29/per Kg</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.IlBfnbxp18wxLhYCBvWanQHaE8&pid=Api&P=0&h=180" alt="Olive Oil">
+            <h3>Olive Oil</h3>
+            <p>Rs/-1199/per lit</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="grocery">
+            <img src="https://c.pxhere.com/photos/12/fd/cuisine_delicious_dinner_dish_food_lunch_meal_pasta-1539171.jpg!d" alt="Pasta">
+            <h3>Pasta</h3>
+            <p>Rs/-59/per Kg</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Cool Drinks -->
+        <div class="product-card" data-category="coolDrinks">
+            <img src="https://static.vecteezy.com/system/resources/previews/023/338/744/original/ai-generative-coca-cola-company-fizzy-drinks-diet-coke-pepsi-free-png.png" alt="Cola">
+            <h3>Cola</h3>
+            <p>Rs/-99/per lit</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="coolDrinks">
+            <img src="https://goodparentingbrighterchildren.com/wp-content/uploads/2014/06/Lemonade-Pex.jpg" alt="Lemonade">
+            <h3>Lemonade</h3>
+            <p>Rs/-129/per lit</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="coolDrinks">
+            <img src="https://cdn.wallpapersafari.com/18/64/bBFYnE.jpg" alt="Orange Juice">
+            <h3>Orange Juice</h3>
+            <p>Rs/-119/per lit</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="coolDrinks">
+            <img src="https://wallpapercave.com/wp/wp3079403.jpg" alt="Iced Tea">
+            <h3>Iced Tea</h3>
+            <p>Rs/-49/per lit</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="coolDrinks">
+            <img src="https://i5.walmartimages.com/asr/8a9a0629-bdbb-4f5f-ac7d-5bfd4960e3d7.9382d00c6e1718b8263bcf01bf0a4726.jpeg" alt="Energy Drink">
+            <h3>Energy Drink</h3>
+            <p>Rs/-69/per lit</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Clothes -->
+        <div class="product-card" data-category="clothes">
+            <img src="https://handcmediastorage.blob.core.windows.net/productimages/TH/THPZA001-N01-169571-1400px-1820px.jpg" alt="T-Shirt">
+            <h3>Cotton T-Shirt</h3>
+            <p>Rs/-4,911</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="clothes">
+            <img src="https://cdn-images.farfetch-contents.com/18/95/43/42/18954342_42177909_1000.jpg" alt="Jeans">
+            <h3>Blue Jeans</h3>
+            <p>Rs/-5,000</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="clothes">
+            <img src="https://pngimg.com/uploads/leather_jacket/leather_jacket_PNG47.png" alt="Jacket">
+            <h3>Leather Jacket</h3>
+            <p>Rs/-1211</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="clothes">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.f4f6aKkZgXDipPuCvG-B7AHaHa&pid=Api&P=0&h=180" alt="Sweater">
+            <h3>Wool Sweater</h3>
+            <p>Rs/-1299</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="clothes">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.tSDAP3tZESgDAN59xgeNMgHaHa&pid=Api&P=0&h=180" alt="Dress">
+            <h3>Summer Dress</h3>
+            <p>Rs/-1488</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Accessories -->
+        <div class="product-card" data-category="accessories">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.2xL-oWpoNqwadYCSGYP6BgHaDt&pid=Api&P=0&h=180" alt="Watch">
+            <h3>Analog Watch</h3>
+            <p>Rs/-4999</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="accessories">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.7pXTHd2x5ZTFd4GK9-n0nAHaEo&pid=Api&P=0&h=180" alt="Sunglasses">
+            <h3>Sunglasses</h3>
+            <p>Rs/-2,999</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="accessories">
+            <img src="https://i.etsystatic.com/17144720/r/il/3e8033/3229078507/il_fullxfull.3229078507_mif6.jpg" alt="Belt">
+            <h3>Leather Belt</h3>
+            <p>Rs/-799</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="accessories">
+            <img src="https://www.kendrascott.com/on/demandware.static/-/Sites-kendrascott/default/dwf0d31e4d/Winter-2-2022/Product-Images/kendra-scott-annie-infinity-pendant-necklace-silver-white-crystal-01.jpeg" alt="Necklace">
+            <h3>Silver Necklace</h3>
+            <p>Rs/-9,000</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="accessories">
+            <img src="https://www.bhphotovideo.com/images/images2000x2000/jansport_typ79ru_right_pack_backpack_desert_1112260.jpg" alt="Backpack">
+            <h3>Backpack</h3>
+            <p>Rs/-5,999</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 SuperMart. All rights reserved.</p>
+    </div>
+
+    <script>
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Item added to cart!');
+            });
+        });
+    </script>
+</body>
+</html>
